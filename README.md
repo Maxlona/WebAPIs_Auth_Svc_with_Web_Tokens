@@ -32,7 +32,7 @@ Success Generated JWT Token:
 ![image](https://github.com/user-attachments/assets/abae1b48-017c-4c82-b942-b280a2c4bfba)
 
 https://jwt.io/ 
-![image](https://github.com/user-attachments/assets/399574c7-df72-44e4-8a4d-f16aa6960201)
+![image](https://github.com/user-attachments/assets/5b0c3226-1aac-44d5-a0c1-098e7ec62990)
 
 
 
