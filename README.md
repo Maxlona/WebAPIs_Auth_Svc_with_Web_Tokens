@@ -31,5 +31,10 @@ Authentication and Authorization using .NET Core 8 WbeAPIs,
 Success Generated JWT Token:
 ![image](https://github.com/user-attachments/assets/abae1b48-017c-4c82-b942-b280a2c4bfba)
 
+https://jwt.io/ 
+![image](https://github.com/user-attachments/assets/399574c7-df72-44e4-8a4d-f16aa6960201)
+
+
+
 Example of exceptions handled via _ExceptionMiddleware_
 ![image](https://github.com/user-attachments/assets/ea79b051-1589-453a-af4c-8feb822d61d7)
