@@ -1,0 +1,24 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/AuthService/obj/AuthService.csproj.nuget.dgspec.json
+/AuthService/obj/AuthService.csproj.nuget.g.props
+/AuthService/obj/AuthService.csproj.nuget.g.targets
+/AuthService/obj/project.assets.json
+/AuthService/obj/project.nuget.cache
+/AuthService/obj/Debug/net8.0/staticwebassets/msbuild.build.AuthService.props
+/AuthService/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.AuthService.props
+/AuthService/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.AuthService.props
+/AuthService/obj/Debug/net8.0/ref/AuthService.dll
+/AuthService/obj/Debug/net8.0/refint/AuthService.dll
+/AuthService/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+/AuthService/obj/Debug/net6.0/staticwebassets/msbuild.build.AuthService.props
+/AuthService/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.AuthService.props
+/AuthService/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.AuthService.props
+/AuthService/obj/Debug/net6.0/ref/AuthService.dll
+/AuthService/obj/Debug/net6.0/refint/AuthService.dll
+/AuthService/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+/AuthService/obj/Debug/net6.0/staticwebassets/msbuild.build.AuthService.props
+/AuthService/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.AuthService.props
+/AuthService/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.AuthService.props
