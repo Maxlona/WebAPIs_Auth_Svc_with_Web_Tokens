@@ -20,6 +20,7 @@ Authentication and Authorization using .NET Core 8 WbeAPIs,
 - Users with unactivated emails, can not reset passwords.
 - Admin Only End-point, which can be accessed via "Admin" only Users,
 - Users and Editor's End-point, can be accessed by Admins.
+- To reset users' passwords, users will "Request" password reset, using the generated temp code, to change the password. 
 - The attached Postman collection covers all endpoints.
 
 **Example Screenshots:**
