@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"firstName\": \"Mamod\",\r\n  \"lastName\": \"Sayed\",\r\n  \"email\": \"mode_flashmx@hotmail.com\",\r\n  \"username\": \"MSayed\",\r\n  \"password\": \"@Modemode100\"\r\n}",
+					"raw": "{\r\n  \"firstName\": \"Mamod\",\r\n  \"lastName\": \"Sayed\",\r\n  \"email\": \"me@hotmail.com\",\r\n  \"username\": \"MSayed\",\r\n  \"password\": \"testPassword\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -65,7 +65,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"mode_flashmx@hotmail.com\",\r\n  \"password\": \"modemode\",\r\n  \"rememberMe\": false\r\n}",
+					"raw": "{\r\n  \"email\": \"me@hotmail.com\",\r\n  \"password\": \"testPassword\",\r\n  \"rememberMe\": false\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -167,7 +167,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"oldPassword\": \"@Modemode100\",\r\n  \"email\": \"mode_flashmx@hotmail.com\"\r\n}",
+					"raw": "{\r\n  \"oldPassword\": \"testPassword\",\r\n  \"email\": \"me@hotmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
