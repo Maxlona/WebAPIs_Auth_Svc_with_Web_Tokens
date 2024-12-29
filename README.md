@@ -28,7 +28,7 @@ Authentication and Authorization using .NET Core 8 WbeAPIs,
 
 ![image](https://github.com/user-attachments/assets/181b0d2b-d059-4abd-a3dd-9d5444259fea)
 
-Success Generated JWT Token:
+Postman test login Successfully Generated JWT Token
 ![image](https://github.com/user-attachments/assets/abae1b48-017c-4c82-b942-b280a2c4bfba)
 
 https://jwt.io/ 
