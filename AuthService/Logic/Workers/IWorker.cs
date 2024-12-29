@@ -1,5 +1,6 @@
 ﻿using AuthService.AuthModels;
 using AuthService.SQL_Models;
+using System.Security.Claims;
 
 namespace AuthService.Logic.Workers
 {
@@ -10,8 +11,9 @@ namespace AuthService.Logic.Workers
         Task<JwtReponse> IssueNewToken(bool rememberMe, sqlAccountInfo UserInfo);
         Task<bool> ResetUserPassword(ResetModel reset);
         Task<bool> ActivateCode(string code);
-        bool ValidateUserToken(string stringToken);
+        bool ValidateTokenExpiration(string stringToken);
         Task<string> RequestPasswordReset(ResetRequestModel request);
         Task<string> SignUpNewUser(SignUpUserModel newUser);
+        string GenerateRefreshToken(string token);
     }
 }

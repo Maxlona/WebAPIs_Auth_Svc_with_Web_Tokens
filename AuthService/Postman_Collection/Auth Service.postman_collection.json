@@ -59,13 +59,13 @@
 			"response": []
 		},
 		{
-			"name": "LOGIN",
+			"name": "Login User",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"me@hotmail.com\",\r\n  \"password\": \"testPassword\",\r\n  \"rememberMe\": false\r\n}",
+					"raw": "{\r\n  \"email\": \"mode_flashmx@hotmail.com\",\r\n  \"password\": \"modemode\",\r\n  \"rememberMe\": false\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -95,7 +95,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjE3OTEzNjBiN2VhMTQ4ZDM4N2JiN2VkM2IyZmEzZTVmIiwicm9sZSI6IlVzZXIiLCJlbWFpbCI6Im1vZGVfZmxhc2hteEBob3RtYWlsLmNvbSIsIm5iZiI6MTczNTQyNDI5OSwiZXhwIjoxNzM1NDI1NDk5LCJpYXQiOjE3MzU0MjQyOTksImlzcyI6Ik9mZmVyczJTaGFyZSIsImF1ZCI6IkFuZHJvaWQifQ.MRprzzFu_DPbr5Uj2x43jq9vBlBc__Bmqmt_wREXLTI\"",
+					"raw": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjE3OTEzNjBiN2VhMTQ4ZDM4N2JiN2VkM2IyZmEzZTVmIiwicm9sZSI6IlVzZXIiLCJlbWFpbCI6Im1vZGVfZmxhc2hteEBob3RtYWlsLmNvbSIsIm5iZiI6MTczNTQ0OTkwNSwiZXhwIjoxNzM1NDQ5OTY1LCJpYXQiOjE3MzU0NDk5MDUsImlzcyI6Ik9mZmVyczJTaGFyZSIsImF1ZCI6WyJBbmRyb2lkIiwiQW5kcm9pZCJdfQ.fcZ5nVthxdQHfpwyNdYUQUTGMGBiuRT2bObLVTNX2sw\"",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -113,6 +113,36 @@
 						"api",
 						"Auth",
 						"ValidateToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GenerateRefreshToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjE3OTEzNjBiN2VhMTQ4ZDM4N2JiN2VkM2IyZmEzZTVmIiwicm9sZSI6IlVzZXIiLCJlbWFpbCI6Im1vZGVfZmxhc2hteEBob3RtYWlsLmNvbSIsIm5iZiI6MTczNTQ0OTMwMywiZXhwIjoxNzM1NDUwNTAzLCJpYXQiOjE3MzU0NDkzMDMsImlzcyI6Ik9mZmVyczJTaGFyZSIsImF1ZCI6IkFuZHJvaWQifQ.sMoQue6DDf230UtOe85Dubgu3F-euDlBY6lSV8DfBDM\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7049/api/Auth/RefreshAccessToken",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7049",
+					"path": [
+						"api",
+						"Auth",
+						"RefreshAccessToken"
 					]
 				}
 			},
@@ -226,7 +256,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjE3OTEzNjBiN2VhMTQ4ZDM4N2JiN2VkM2IyZmEzZTVmIiwicm9sZSI6IlVzZXIiLCJlbWFpbCI6Im1vZGVfZmxhc2hteEBob3RtYWlsLmNvbSIsIm5iZiI6MTczNTQyNDI5OSwiZXhwIjoxNzM1NDI1NDk5LCJpYXQiOjE3MzU0MjQyOTksImlzcyI6Ik9mZmVyczJTaGFyZSIsImF1ZCI6IkFuZHJvaWQifQ.MRprzzFu_DPbr5Uj2x43jq9vBlBc__Bmqmt_wREXLTI",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjE3OTEzNjBiN2VhMTQ4ZDM4N2JiN2VkM2IyZmEzZTVmIiwicm9sZSI6IlVzZXIiLCJlbWFpbCI6Im1vZGVfZmxhc2hteEBob3RtYWlsLmNvbSIsIm5iZiI6MTczNTQ1MDMyNiwiZXhwIjoxNzM1NDUwNDg1LCJpYXQiOjE3MzU0NTAzMDUsImlzcyI6Ik9mZmVyczJTaGFyZSIsImF1ZCI6WyJBbmRyb2lkIiwiQW5kcm9pZCJdLCJSZWZyZXNoVG9rZW4iOiJ0cnVlIn0.JR9qIEj11xTV01qtirjq6aBHEsVTFRi6_EORLYFkVl0",
 				"type": "string"
 			}
 		]

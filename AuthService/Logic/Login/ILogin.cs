@@ -10,5 +10,7 @@ namespace AuthService.Logic.Login
         Task<JwtReponse> LoginUser(LoginUserModel login);
 
         Task<bool> ValidateUserToken(string Token);
+
+        string RefreshToken(string Token);
     }
 }

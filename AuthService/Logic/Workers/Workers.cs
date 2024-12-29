@@ -1,9 +1,14 @@
 ﻿using AuthService.AuthModels;
 using AuthService.SQL_Models;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
+using System.Net.Sockets;
 
 namespace AuthService.Logic.Workers
 {
@@ -101,8 +106,7 @@ namespace AuthService.Logic.Workers
             // claims come from db
             ClaimsIdentity claims = new([
                 new Claim(ClaimTypes.Name, UserInfo?.UserID),
-                // user/admin...
-                new Claim(ClaimTypes.Role, role),
+                new Claim(ClaimTypes.Role, role), // user/admin...
                 new Claim(ClaimTypes.Email, UserInfo?.Email),
             ]);
 
@@ -190,7 +194,8 @@ namespace AuthService.Logic.Workers
         }
 
 
-        public bool ValidateUserToken(string stringToken)
+
+        public bool ValidateTokenExpiration(string stringToken)
         {
             if (string.IsNullOrEmpty(stringToken))
             {
@@ -199,7 +204,7 @@ namespace AuthService.Logic.Workers
 
             string? configJwtKeyValue = _config?.GetSection("Jwt:SecretKey").Value;
 
-            string sec = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(configJwtKeyValue));
+            string sec = Convert.ToBase64String(Encoding.UTF8.GetBytes(configJwtKeyValue));
 
             byte[] secret = Convert.FromBase64String(sec);
 
@@ -217,29 +222,88 @@ namespace AuthService.Logic.Workers
             };
 
             ClaimsPrincipal principal = tokenHandler.ValidateToken(stringToken, tvp, out SecurityToken securityToken);
+            
+            if (principal == null)
+            {
+                throw new InvalidOperationException("Failed to validate token");
+            }
+
             if (principal != null)
             {
                 string? userName = principal.Identity?.Name;
 
                 ///check jwt expiration
-
                 JwtSecurityToken jwtSecurityToken = tokenHandler.ReadJwtToken(stringToken);
+
                 string tokenExp = jwtSecurityToken.Claims.First(claim => claim.Type.Equals("exp")).Value;
                 long ticks = long.Parse(tokenExp);
                 DateTime tokenDate = DateTimeOffset.FromUnixTimeSeconds(ticks).UtcDateTime;
                 DateTime now = DateTime.Now.ToUniversalTime();
                 bool valid = tokenDate > now;
 
-                /// Revoking a token is done through "blacklisting" an Email!
+                /// Revoking a token is done through "blacklisting" an Email account!
                 /// get user email
                 string userEmail = jwtSecurityToken.Claims.First(claim => claim.Type.Equals("email")).Value;
 
+                return true;
                 /// check if an Email is blacklisted? userEmail
             }
-
-            return true;
+            return false;
         }
 
+        /// <summary>
+        /// Refresh tokens are generated of an expired token
+        /// no need to re-login...if token was valid, but expired.. refresh it
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public string GenerateRefreshToken(string token)
+        {
+            /// validat token, if valid but expired, get a new token.. using previous expied token, 
+            /// no sign in reuqired
+        
+            string? configJwtKeyValue = _config?.GetSection("Jwt:SecretKey").Value;
+            string sec = Convert.ToBase64String(Encoding.UTF8.GetBytes(configJwtKeyValue));
+            byte[] secret = Convert.FromBase64String(sec);
+
+            JwtSecurityTokenHandler tokenHandler = new();
+
+            TokenValidationParameters tvp = new()
+            {
+                ValidateAudience = true,
+                ValidateIssuer = true,
+                ValidIssuer = _config?.GetSection("Jwt:Issuer").Value,
+                ValidAudience = _config?.GetSection("Jwt:Audience").Value,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(secret),
+                ValidateLifetime = true
+            };
+
+            ClaimsPrincipal principal = tokenHandler.ValidateToken(token, tvp, out SecurityToken securityToken);
+            JwtSecurityToken jwtSecurityToken = tokenHandler.ReadJwtToken(token);
+
+            // carry on user claims
+            ClaimsIdentity claims = new();
+            foreach (var claim in jwtSecurityToken.Claims)
+                claims.AddClaim(claim);
+
+            /// add custom flag, is_refresh_token = true
+            claims.AddClaim(new Claim("RefreshToken", "true"));
+
+            SecurityTokenDescriptor tokenDescriptor = new()
+            {
+                Issuer = _config.GetSection("Jwt:Issuer").Value,
+                Audience = _config.GetSection("Jwt:Audience").Value,
+                Subject = claims,
+                IssuedAt = DateTime.UtcNow,
+                Expires = DateTime.UtcNow.AddSeconds(180), ///180 for 3 min
+                TokenType = _config.GetSection("Jwt:TokenType").Value,
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secret), SecurityAlgorithms.HmacSha256)
+            };
+             
+            SecurityToken sectoken = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(sectoken);
+        }
 
         public async Task<string> RequestPasswordReset(ResetRequestModel request)
         {
@@ -320,7 +384,6 @@ namespace AuthService.Logic.Workers
                 ).FirstOrDefault();
             return userExists;
         }
-
 
 
         private sqlAccountInfo? CheckIfOldPassMatch(string Email, string Pass)

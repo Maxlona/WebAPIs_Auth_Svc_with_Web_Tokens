@@ -3,7 +3,7 @@ using AuthService.Logic.Workers;
 
 namespace AuthService.Logic.Login
 {
-    public class Login: ILogin
+    public class Login : ILogin
     {
         private readonly IWorker _worker;
         public Login(IWorker worker)
@@ -48,11 +48,21 @@ namespace AuthService.Logic.Login
             }
         }
 
+        public string RefreshToken(string Token)
+        {
+            /// validate token issuer  
+            if (string.IsNullOrEmpty(Token))
+            {
+                throw new Exception("invalid user Token");
+            }
+            return _worker.GenerateRefreshToken(Token);
+        }
+
         public async Task<bool> ValidateUserToken(string Token)
         {
-            var ValidAccess = _worker.ValidateUserToken(Token);
+            var ValidAccess = _worker.ValidateTokenExpiration(Token);
             return await Task.FromResult(ValidAccess);
         }
-         
+
     }
 }

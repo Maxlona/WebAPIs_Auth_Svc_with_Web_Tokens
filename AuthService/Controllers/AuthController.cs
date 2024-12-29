@@ -116,6 +116,16 @@ namespace AuthService.Controllers
         }
 
 
+        /// <summary>
+        ///  custom check: if token valid.. 
+        /// </summary>
+        /// <param name="stringtoken"></param>
+        /// <returns></returns>
+        [HttpPost("RefreshAccessToken")]
+        public async Task<IActionResult> RefreshAccessToken([FromBody] string stringToken)
+        {
+           return Ok(_login.RefreshToken(stringToken));
+        }
 
         /// <summary>
         ///  custom check: if token valid.. 
