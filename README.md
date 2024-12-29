@@ -8,7 +8,7 @@ Authentication and Authorization using .NET Core 8 WbeAPIs,
 - Automapper: Used to abstract the DB Models from the front-end "user" request.
 - JWT Tokens and Claims: Used to authorize and protect sensitive endpoints.
 - Swagger: Endpoint API Explorer
-- Entity Framework: Code First approach & DbContext.
+- Entity Framework: Code First approach & DbContext (SQL Tables included).
 - Middleware for Logging and Global Exception Handling.
 
 **Assumptions:**
@@ -24,8 +24,8 @@ Authentication and Authorization using .NET Core 8 WbeAPIs,
 - Refresh Token: Used to issue a new token, from an expired JWT Token... valid for 3 minutes.
 
 **Example Screenshots:**
-![image](https://github.com/user-attachments/assets/26c5d8d5-02f2-4f97-93c3-4016eaec748e)
 
+![image](https://github.com/user-attachments/assets/26c5d8d5-02f2-4f97-93c3-4016eaec748e)
 
 ![image](https://github.com/user-attachments/assets/181b0d2b-d059-4abd-a3dd-9d5444259fea)
 
