@@ -1,11 +1,10 @@
 Authentication and Authorization using .NET Core 8 WbeAPIs,
 
 **What does this Service do?**
-- Authenticate: Create users, Login, Reset Password, and Verify created accounts.
-- Authorized: By validating the issued JWT Tokens with Claims (User, Editor, Admin)
-- Data Store: Data saved using SQL Server,
+- _Authenticate_: Create users, Login, Issue JWT Access Tokens, Reset Password, and Verify Access.
+- _Authorized_: By validating the issued JWT Tokens with Claims (User, Editor, Admin).
 
-**TechStack**:
+**Tech Stack**:
 - Automapper: Used to abstract the DB Models from the front-end "user" request.
 - JWT Tokens and Claims: Used to authorize and protect sensitive endpoints.
 - Swagger: Endpoint API Explorer
@@ -22,6 +21,7 @@ Authentication and Authorization using .NET Core 8 WbeAPIs,
 - Users and Editor's End-point, can be accessed by Admins.
 - To reset users' passwords, users will "Request" password reset, using the generated temp code, to change the password. 
 - The attached Postman collection covers all endpoints.
+- Refresh Token: Used to issue a new token, from an expired JWT Token... valid for 3 minutes.
 
 **Example Screenshots:**
 ![image](https://github.com/user-attachments/assets/92b60243-54ad-4efc-a939-d11c8de67140)
