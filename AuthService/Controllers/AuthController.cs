@@ -124,7 +124,7 @@ namespace AuthService.Controllers
         [HttpPost("RefreshAccessToken")]
         public async Task<IActionResult> RefreshAccessToken([FromBody] string stringToken)
         {
-           return Ok(_login.RefreshToken(stringToken));
+            return Ok(_login.RefreshToken(stringToken));
         }
 
         /// <summary>

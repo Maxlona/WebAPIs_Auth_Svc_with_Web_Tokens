@@ -222,7 +222,7 @@ namespace AuthService.Logic.Workers
             };
 
             ClaimsPrincipal principal = tokenHandler.ValidateToken(stringToken, tvp, out SecurityToken securityToken);
-            
+
             if (principal == null)
             {
                 throw new InvalidOperationException("Failed to validate token");
@@ -261,7 +261,7 @@ namespace AuthService.Logic.Workers
         {
             /// validat token, if valid but expired, get a new token.. using previous expied token, 
             /// no sign in reuqired
-        
+
             string? configJwtKeyValue = _config?.GetSection("Jwt:SecretKey").Value;
             string sec = Convert.ToBase64String(Encoding.UTF8.GetBytes(configJwtKeyValue));
             byte[] secret = Convert.FromBase64String(sec);
@@ -276,7 +276,7 @@ namespace AuthService.Logic.Workers
                 ValidAudience = _config?.GetSection("Jwt:Audience").Value,
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(secret),
-                ValidateLifetime = true
+                ValidateLifetime = false // must to avoid expiration error
             };
 
             ClaimsPrincipal principal = tokenHandler.ValidateToken(token, tvp, out SecurityToken securityToken);
@@ -300,7 +300,7 @@ namespace AuthService.Logic.Workers
                 TokenType = _config.GetSection("Jwt:TokenType").Value,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secret), SecurityAlgorithms.HmacSha256)
             };
-             
+
             SecurityToken sectoken = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(sectoken);
         }
