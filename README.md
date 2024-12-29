@@ -24,7 +24,8 @@ Authentication and Authorization using .NET Core 8 WbeAPIs,
 - Refresh Token: Used to issue a new token, from an expired JWT Token... valid for 3 minutes.
 
 **Example Screenshots:**
-![image](https://github.com/user-attachments/assets/92b60243-54ad-4efc-a939-d11c8de67140)
+![image](https://github.com/user-attachments/assets/26c5d8d5-02f2-4f97-93c3-4016eaec748e)
+
 
 ![image](https://github.com/user-attachments/assets/181b0d2b-d059-4abd-a3dd-9d5444259fea)
 
